@@ -128,11 +128,12 @@ public class MenuSystem : MonoBehaviour
     public void SongSelect(string songName)
     {
         _sceneToLoad = songName;
-        if (songName == "Castle" && !cutScenePlayed)
+        //Uncomment for final build when Cutscene is re-implemented
+        /*if (songName == "Castle" && !cutScenePlayed)
         {
             _sceneToLoad = "OpeningCutscene";
             cutScenePlayed = true;
-        }
+        }*/
         freePlaySongToPlay = null;
         isEndless = false;
         ToDifficulty();
