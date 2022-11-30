@@ -38,6 +38,9 @@ public class StatHandler : MonoBehaviour
     private bool canTakeDamage = true;
 
     [SerializeField] private GameObject healthUpEffect;
+    [SerializeField] private GameObject comboEffect;
+    [SerializeField] private ParticleSystem comboParticles;
+    [SerializeField] private int comboActivateNum;
     //[SerializeField] private GameObject healthUpSprinkle;
     
     
@@ -56,6 +59,7 @@ public class StatHandler : MonoBehaviour
         healthText.text = $"{currentHealth}";
         conductor = FindObjectOfType<Conductor>();
         _beatSource = GetComponent<AudioSource>();
+
         try
         {
             screenShaker = Camera.main.GetComponent<ScreenShake>();
@@ -143,6 +147,7 @@ public class StatHandler : MonoBehaviour
     {
         currentCombo = 0;
         currentComboText.text = $"{currentCombo}";
+        comboEffect.SetActive(false);
     }
 
     public void Update()
@@ -173,6 +178,13 @@ public class StatHandler : MonoBehaviour
             {
                 EndCombo();
             } 
+        }
+
+        if (currentCombo == comboActivateNum)
+        {
+            comboEffect.SetActive(true);
+            comboParticles.Play();
+            //Debug.Log("Combo Turn On");
         }
     }
 

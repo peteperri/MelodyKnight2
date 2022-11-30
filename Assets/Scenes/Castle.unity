@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1803456383261303642, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3720436616084686256, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -218,11 +222,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3856607612013941644, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
 --- !u!1 &75769862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3720436615794328166, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
+  m_PrefabInstance: {fileID: 75769861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &75769863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1803456383261303642, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
+  m_PrefabInstance: {fileID: 75769861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &75769864 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4321989936625727475, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
   m_PrefabInstance: {fileID: 75769861}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
@@ -814,6 +832,18 @@ PrefabInstance:
       propertyPath: buttons
       value: 
       objectReference: {fileID: 75769862}
+    - target: {fileID: 4072037012130941946, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
+      propertyPath: comboEffect
+      value: 
+      objectReference: {fileID: 75769863}
+    - target: {fileID: 4072037012130941946, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
+      propertyPath: comboParticles
+      value: 
+      objectReference: {fileID: 75769864}
+    - target: {fileID: 4072037012130941946, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
+      propertyPath: comboActivateNum
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4072037013352367072, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
       propertyPath: m_Name
       value: Character

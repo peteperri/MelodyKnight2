@@ -13,6 +13,7 @@ public class MenuSystem : MonoBehaviour
     public static bool spawnSwipeNotes;
     public static int startingHealth;
     public static bool isEndless = false;
+    public static string difficultySet; 
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] GameObject titleScreen;
     [SerializeField] GameObject modeSelectScreen;
@@ -249,7 +250,7 @@ public class MenuSystem : MonoBehaviour
         {
             _sceneToLoad = "EndlessMode";
         }
-        
+        difficultySet = difficultyLevel;
         SceneManager.LoadScene(_sceneToLoad);
     }
 

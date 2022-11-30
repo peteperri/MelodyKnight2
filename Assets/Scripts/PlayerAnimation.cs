@@ -26,8 +26,8 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (Input.touchCount == 0 && hit == false && cooldown == false)
         {
-            //Idle();
-            anim.CrossFade("Allegro Idle", 0, 0);
+         if (MenuSystem.difficultySet != "Hard")
+                Idle();
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -38,11 +38,11 @@ public class PlayerAnimation : MonoBehaviour
 
             if (Input.touchCount == 1)
             {
-                anim.CrossFade("Allegro Swing", 0, 0);
+                Swing();
             }
             else if (Input.touchCount >= 2)
             {
-                anim.CrossFade("Allegro DualAttack", 0, 0);
+                Dual();
             }
 
             //Flip direction
@@ -68,18 +68,18 @@ public class PlayerAnimation : MonoBehaviour
             touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
             if (Input.touchCount >= 2)
-            {  
-                anim.CrossFade("Allegro DualAttack", 0, 0);   
+            {
+                Dual(); 
             } else if (canPlaySlash == true)
             {
-                if (touchPosition.y > startPos.y + 0.3)
+                if (touchPosition.y > startPos.y + 0.1)
                 {
-                    anim.CrossFade("Allegro UpSlash", 0, 0);
+                    UpSlash();
                     canPlaySlash = false;
                 }
-                else if (touchPosition.y < startPos.y - 0.3)
+                else if (touchPosition.y < startPos.y - 0.1)
                 {
-                    anim.CrossFade("Allegro DownSlash", 0, 0);
+                    DownSlash();
                     canPlaySlash = false;
                 }
             }
@@ -150,4 +150,37 @@ public class PlayerAnimation : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         cooldown = false;
     }
+
+    //Animations
+
+    void Idle()
+    {
+        anim.CrossFade("Allegro Idle", 0, 0);
+    }
+
+    void Swing()
+    {
+        anim.CrossFade("Allegro Swing", 0, 0);
+        anim.Play("Allegro Swing", -1, 0f);
+    }
+
+    void Dual()
+    {
+        anim.CrossFade("Allegro DualAttack", 0, 0);
+        anim.Play("Allegro DualAttack", -1, 0f);
+    }
+
+    void UpSlash()
+    {
+        anim.CrossFade("Allegro UpSlash", 0, 0);
+        anim.Play("Allegro UpSlash", -1, 0f);
+    }
+
+    void DownSlash()
+    {
+        anim.CrossFade("Allegro DownSlash", 0, 0);
+        anim.Play("Allegro DownSlash", -1, 0f);
+    }
+
+
 }
