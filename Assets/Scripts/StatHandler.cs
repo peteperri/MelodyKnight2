@@ -39,7 +39,7 @@ public class StatHandler : MonoBehaviour
 
     [SerializeField] private GameObject healthUpEffect;
     [SerializeField] private GameObject comboEffect;
-    [SerializeField] private ParticleSystem comboParticles;
+    //[SerializeField] private ParticleSystem comboParticles;
     [SerializeField] private int comboActivateNum;
     //[SerializeField] private GameObject healthUpSprinkle;
     
@@ -68,8 +68,6 @@ public class StatHandler : MonoBehaviour
         {
             
         }
-
-
     }
 
     public void ChangeHealth(float healthChangeAmount)
@@ -183,7 +181,7 @@ public class StatHandler : MonoBehaviour
         if (currentCombo == comboActivateNum)
         {
             comboEffect.SetActive(true);
-            comboParticles.Play();
+            //comboParticles.Play();
             //Debug.Log("Combo Turn On");
         }
     }

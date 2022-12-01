@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1803456383261303642, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3720436616084686256, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
       propertyPath: m_Pivot.x
@@ -231,16 +231,6 @@ PrefabInstance:
 --- !u!1 &75769862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3720436615794328166, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
-  m_PrefabInstance: {fileID: 75769861}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &75769863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1803456383261303642, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
-  m_PrefabInstance: {fileID: 75769861}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &75769864 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4321989936625727475, guid: 2435860844c4e92459eddb855fa8bccb, type: 3}
   m_PrefabInstance: {fileID: 75769861}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
@@ -833,16 +823,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 75769862}
     - target: {fileID: 4072037012130941946, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
-      propertyPath: comboEffect
-      value: 
-      objectReference: {fileID: 75769863}
-    - target: {fileID: 4072037012130941946, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
       propertyPath: comboParticles
       value: 
-      objectReference: {fileID: 75769864}
-    - target: {fileID: 4072037012130941946, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
-      propertyPath: comboActivateNum
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4072037013352367072, guid: 4fc8d7ddbd984c242b2ee250a2363105, type: 3}
       propertyPath: m_Name
@@ -988,6 +970,10 @@ PrefabInstance:
     - target: {fileID: 3434474620331684208, guid: 7af8b66193922c245a0c6365fb61f9cc, type: 3}
       propertyPath: m_Name
       value: CastleBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434474620331684208, guid: 7af8b66193922c245a0c6365fb61f9cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3434474620331684222, guid: 7af8b66193922c245a0c6365fb61f9cc, type: 3}
       propertyPath: m_RootOrder
