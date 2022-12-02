@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Fire.unity
     guid: 80c4e477e386cc1478fd4cd631a3df9d
   - enabled: 1
+    path: Assets/Scenes/DLC.unity
+    guid: 5d33835efc9827c4bbfeeceacbdd08dd
+  - enabled: 1
     path: Assets/Scenes/Free Play.unity
     guid: 98bfc12b48e59ba46a14cd3c9c6c8de8
   - enabled: 1

@@ -225,7 +225,7 @@ public class StatHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         resultText.text = "You win!";
-        if (MenuSystem.freePlaySongToPlay == null && !SceneManager.GetActiveScene().name.Equals("Fire") && !SceneManager.GetActiveScene().name.Equals("EndlessMode"))
+        if (MenuSystem.freePlaySongToPlay == null && !SceneManager.GetActiveScene().name.Equals("DLC") && !SceneManager.GetActiveScene().name.Equals("EndlessMode"))
         {
             GetComponent<Animator>().CrossFade("Base Layer.Allegro Run", 0, 0);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(10.5f, transform.position.y, transform.position.z), speed * Time.deltaTime);
@@ -240,6 +240,10 @@ public class StatHandler : MonoBehaviour
                 {
                     MenuSystem.level2Beaten = true;
                     SceneManager.LoadScene("Fire");
+                } else if (SceneManager.GetActiveScene().name.Equals("Fire"))
+                {
+                    MenuSystem.level3Beaten = true;
+                    SceneManager.LoadScene("DLC");
                 }
             }
         }
@@ -256,6 +260,11 @@ public class StatHandler : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("Forest"))
         {
             MenuSystem.level2Beaten = true;
+        }
+
+        if (SceneManager.GetActiveScene().name.Equals("Fire"))
+        {
+            MenuSystem.level3Beaten = true;
         }
     }
 

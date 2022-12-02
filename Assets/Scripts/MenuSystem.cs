@@ -23,6 +23,7 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] GameObject optionsScreen;
     [SerializeField] GameObject comboCanvas;
     [SerializeField] GameObject howToPlayScreen;
+    [SerializeField] GameObject creditsScreen;
     [SerializeField] Sprite[] comboImage;
 
     //For Pause Menu
@@ -33,6 +34,7 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] GameObject Level1Button;
     [SerializeField] GameObject Level2Button;
     [SerializeField] GameObject Level3Button;
+    [SerializeField] GameObject Level4Button;
     [SerializeField] private GameObject LeftArrow;
     [SerializeField] private GameObject RightArrow;
 
@@ -43,6 +45,7 @@ public class MenuSystem : MonoBehaviour
     //private bool story;
     public static bool level1Beaten;
     public static bool level2Beaten;
+    public static bool level3Beaten;
     public static FreePlaySong freePlaySongToPlay;
     public static string freePlayBG;
     private static bool cutScenePlayed;
@@ -86,6 +89,11 @@ public class MenuSystem : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log("Space Pressed");
+            level1Beaten = true;
+            level2Beaten = true;
+            level3Beaten = true;
+            LeftArrow.SetActive(true);
+            RightArrow.SetActive(true);
         }
     }
 
@@ -193,6 +201,7 @@ public class MenuSystem : MonoBehaviour
         FreeplayModeScreen.SetActive(false);
         howToPlayScreen.SetActive(false);
         modeSelectScreen.SetActive(true);
+        creditsScreen.SetActive(false);
         freePlaySongToPlay = null;
     }
     
@@ -204,6 +213,7 @@ public class MenuSystem : MonoBehaviour
         FreeplayModeScreen.SetActive(false);
         modeSelectScreen.SetActive(false);
         howToPlayScreen.SetActive(false);
+        creditsScreen.SetActive(false);
         titleScreen.SetActive(true);
         freePlaySongToPlay = null;
     }
@@ -217,6 +227,20 @@ public class MenuSystem : MonoBehaviour
         modeSelectScreen.SetActive(false);
         howToPlayScreen.SetActive(true);
         titleScreen.SetActive(false);
+        creditsScreen.SetActive(false);
+        freePlaySongToPlay = null;
+    }
+
+    public void Credits()
+    {
+        difficultyScreen.SetActive(false);
+        optionsScreen.SetActive(false);
+        songSelectScreen.SetActive(false);
+        FreeplayModeScreen.SetActive(false);
+        modeSelectScreen.SetActive(false);
+        howToPlayScreen.SetActive(false);
+        titleScreen.SetActive(false);
+        creditsScreen.SetActive(true);
         freePlaySongToPlay = null;
     }
 
@@ -325,20 +349,33 @@ public class MenuSystem : MonoBehaviour
             Level2Button.SetActive(false);
             Level1Button.SetActive(true);
         }
-        else if (Level3Button.activeInHierarchy)
+        else if (Level3Button.activeInHierarchy && !level3Beaten)
         {
             Level3Button.SetActive(false);
+            Level1Button.SetActive(true);
+        } else if (Level3Button.activeInHierarchy && level3Beaten)
+        {
+            Level3Button.SetActive(false);
+            Level4Button.SetActive(true);
+        } else if (Level4Button.activeInHierarchy)
+        {
+            Level4Button.SetActive(false);
             Level1Button.SetActive(true);
         }
     }
 
     public void LevelSelectBackward()
     {
-        if (Level1Button.activeInHierarchy && level2Beaten)
+        if (Level1Button.activeInHierarchy && level2Beaten && !level3Beaten)
         {
             Level1Button.SetActive(false);
             Level3Button.SetActive(true);
         } 
+        else if (Level1Button.activeInHierarchy && level2Beaten && level3Beaten)
+        {
+            Level1Button.SetActive(false);
+            Level4Button.SetActive(true);
+        }
         else if (Level1Button.activeInHierarchy && !level2Beaten)
         {
             Level1Button.SetActive(false);
@@ -353,6 +390,11 @@ public class MenuSystem : MonoBehaviour
         {
             Level3Button.SetActive(false);
             Level2Button.SetActive(true);
+        }
+        else if (Level4Button.activeInHierarchy)
+        {
+            Level4Button.SetActive(false);
+            Level3Button.SetActive(true);
         }
     }
 }

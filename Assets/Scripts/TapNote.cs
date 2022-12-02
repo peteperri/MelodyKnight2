@@ -63,6 +63,17 @@ public class TapNote : MonoBehaviour
         } else if (GameObject.Find("FireBackground")) 
         {
             anim.SetBool("Fire", true);
+        } else if (GameObject.Find("DLCbackground"))
+        {
+            int spriteChoice = Random.Range(0,3);
+
+            if (spriteChoice == 1)
+            {
+                anim.SetBool("Forest", true);
+            } else if (spriteChoice == 2)
+            {
+                anim.SetBool("Fire", true);
+            }
         }
     }
 
