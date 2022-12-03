@@ -25,6 +25,8 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] GameObject howToPlayScreen;
     [SerializeField] GameObject creditsScreen;
     [SerializeField] Sprite[] comboImage;
+    [SerializeField] GameObject[] howToPlayPages;
+    private int howToPlaySelection;
 
     //For Pause Menu
     [SerializeField] GameObject pauseMenu;
@@ -81,6 +83,8 @@ public class MenuSystem : MonoBehaviour
             LeftArrow.SetActive(false);
             RightArrow.SetActive(false);
         }
+
+        howToPlaySelection = 0;
     }
 
     // Update is called once per frame
@@ -396,6 +400,30 @@ public class MenuSystem : MonoBehaviour
             Level4Button.SetActive(false);
             Level3Button.SetActive(true);
         }
+    }
+
+    public void HowToPlayForward()
+    {
+        howToPlayPages[howToPlaySelection].SetActive(false);
+        if (howToPlaySelection < 3)
+        {
+            howToPlaySelection++;
+        } else {
+            howToPlaySelection = 0;
+        }
+        howToPlayPages[howToPlaySelection].SetActive(true);
+    }
+
+    public void HowToPlayBackward()
+    {
+        howToPlayPages[howToPlaySelection].SetActive(false);
+        if (howToPlaySelection > 0)
+        {
+            howToPlaySelection--;
+        } else {
+            howToPlaySelection = 3;
+        }
+        howToPlayPages[howToPlaySelection].SetActive(true);
     }
 }
 

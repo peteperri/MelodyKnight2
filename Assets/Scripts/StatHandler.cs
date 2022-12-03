@@ -227,7 +227,8 @@ public class StatHandler : MonoBehaviour
         resultText.text = "You win!";
         if (MenuSystem.freePlaySongToPlay == null && !SceneManager.GetActiveScene().name.Equals("DLC") && !SceneManager.GetActiveScene().name.Equals("EndlessMode"))
         {
-            GetComponent<Animator>().CrossFade("Base Layer.Allegro Run", 0, 0);
+            GetComponent<Animator>().CrossFade("Allegro Run", 0, 0);
+            GetComponent<SpriteRenderer>().flipX = false;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(10.5f, transform.position.y, transform.position.z), speed * Time.deltaTime);
             if (transform.position.x >= 10.0f)
             {
