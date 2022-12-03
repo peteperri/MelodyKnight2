@@ -22,7 +22,7 @@ public class Conductor : MonoBehaviour
     public virtual void Start()
     {
         musicSource = GetComponent<AudioSource>();
-
+        Debug.Log(MenuSystem.freePlaySongToPlay == null);
         if (MenuSystem.freePlaySongToPlay == null)
             Debug.Log("Free Play Song is Null");
         else 

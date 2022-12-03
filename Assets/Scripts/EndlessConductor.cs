@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class EndlessConductor : Conductor
@@ -7,6 +8,7 @@ public class EndlessConductor : Conductor
     private FreePlaySong[] allSongs;
     private int playlistIndex;
     private bool nextSongInitiated;
+    private TextMeshProUGUI songNameText;
     
     private new void Start()
     {
@@ -28,11 +30,12 @@ public class EndlessConductor : Conductor
         firstBeatOffset = allSongs[0].LeadTime;
         musicSource.clip = allSongs[0].Song;
         musicSource.volume = allSongs[0].volume;
-
+        SetDuration();
         SecPerBeat = (60f) / songBpm;
         dspSongTime = (float) AudioSettings.dspTime;
-        songDuration = musicSource.clip.length;
         musicSource.Play();
+        songNameText = GameObject.Find("EndlessText").GetComponent<TextMeshProUGUI>();
+        songNameText.text = allSongs[0].Title;
     }
 
     private new void Update()
@@ -61,11 +64,12 @@ public class EndlessConductor : Conductor
 
         SecPerBeat = (60f) / songBpm;
         dspSongTime = (float) AudioSettings.dspTime;
-        songDuration = musicSource.clip.length;
+        SetDuration();
         SongOver = false;
         nextSongInitiated = false;
         
         musicSource.Play();
+        songNameText.text = allSongs[playlistIndex].Title;
     }
     
     private static void Shuffle (FreePlaySong[] array)
@@ -78,6 +82,20 @@ public class EndlessConductor : Conductor
             FreePlaySong temp = array[n];
             array[n] = array[k];
             array[k] = temp;
+        }
+    }
+
+    private void SetDuration()
+    {
+        if (!MenuSystem.endlessFullSong)
+        {
+            songDuration = 45f;
+            Debug.Log(songDuration);
+        }
+        else
+        {
+            songDuration = musicSource.clip.length;
+            Debug.Log(songDuration);
         }
     }
 }

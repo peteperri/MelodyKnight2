@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.U2D;
 
 public class MenuSystem : MonoBehaviour
 {
@@ -13,7 +15,8 @@ public class MenuSystem : MonoBehaviour
     public static bool spawnSwipeNotes;
     public static int startingHealth;
     public static bool isEndless = false;
-    public static string difficultySet; 
+    public static string difficultySet;
+    public static bool endlessFullSong;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] GameObject titleScreen;
     [SerializeField] GameObject modeSelectScreen;
@@ -40,6 +43,8 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] private GameObject LeftArrow;
     [SerializeField] private GameObject RightArrow;
 
+    private GameObject[] hideOnStart;
+
     private String _sceneToLoad;
 
     private bool isPaused;
@@ -56,6 +61,13 @@ public class MenuSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hideOnStart = GameObject.FindGameObjectsWithTag("HideOnStart");
+        difficultyScreen = GameObject.Find("DifficultyScreen");
+        foreach (var obj in hideOnStart)
+        {
+            obj.SetActive(false);
+        }
+        
         if (SceneManager.GetActiveScene().name == "TitleScreen")
         {
             noteSpeedMultiplier = 8f;
@@ -83,7 +95,7 @@ public class MenuSystem : MonoBehaviour
             LeftArrow.SetActive(false);
             RightArrow.SetActive(false);
         }
-
+        Debug.Log(difficultyScreen == null);
         howToPlaySelection = 0;
     }
 
@@ -296,6 +308,23 @@ public class MenuSystem : MonoBehaviour
         }
     }
 
+    public void EndlessSelection(string selection)
+    {
+        if (selection == "fullSong")
+        {
+            if (endlessFullSong == false)
+            {
+                endlessFullSong = true;
+                Debug.Log("Endless mode WILL play the full song");
+            } else
+            {
+                endlessFullSong = false;
+                Debug.Log("Endless mode will NOT play the full song");
+
+            }
+        }
+    }
+
     public void AddToHealth()
     {
         if (startingHealth != 100)
@@ -424,6 +453,35 @@ public class MenuSystem : MonoBehaviour
             howToPlaySelection = 3;
         }
         howToPlayPages[howToPlaySelection].SetActive(true);
+    }
+
+    public void FileUpload()
+    {
+        string[] allowedTypes = {"mp3", "wav", "audio/mpeg", "audio/x-wav"};
+        
+        NativeFilePicker.PickFile((path) =>
+        {
+            if (path == null)
+            {
+                Debug.Log( "Operation cancelled" );
+
+            }
+            else
+            {
+                GameObject test = new GameObject();
+                FreePlaySong newSong = test.AddComponent<FreePlaySong>();
+                WWW request = new WWW(path);
+                newSong.Song = request.GetAudioClip();
+                newSong.BPM = 140;
+                freePlaySongToPlay = newSong.GetComponent<FreePlaySong>();
+                Debug.Log(freePlaySongToPlay == null);
+                _sceneToLoad = "Free Play";
+                isEndless = false;
+                FreeplayModeScreen = GameObject.Find("FreeplayModeScreen");
+                FreeplayModeScreen.SetActive(false);
+                ChangeDifficulty("Hard");
+            }
+        }, allowedTypes);
     }
 }
 

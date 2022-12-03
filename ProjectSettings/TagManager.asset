@@ -16,6 +16,7 @@ TagManager:
   - HighComboText
   - Enemy
   - GameOver
+  - HideOnStart
   layers:
   - Default
   - TransparentFX
